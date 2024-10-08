@@ -9,24 +9,27 @@ import Router from "./routes/index.js";
 const server = express();
 
 server.use(cors());
-server.disable("x-powered-by"); //Reduce fingerprinting
-server.use(cookieParser());
-server.use(express.urlencoded({ extended: false }));
+
+// We used it after we have to deal with session  
+// server.use(cookieParser());
+
+//We used the below line when the user have to fill the form using html
+
+// server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
 
 // CONNECT DATABASE
 
 main().catch(err => console.log(err));
 
-console.log(URI);
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/checktheUser');
+  await mongoose.connect(URI);
 
 }
 
 Router(server);
 
-server.listen(5005, () =>
-    console.log(`Server running on http://localhost:${5005}`)
+server.listen(PORT, () =>
+    console.log(`Server running on http://localhost:${PORT}`)
 );

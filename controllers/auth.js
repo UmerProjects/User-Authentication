@@ -1,18 +1,12 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 
-/**
- * @route POST v1/auth/register
- * @desc Registers a user
- * @access Public
- */
+
 export async function Register(req, res) {
-  // get required variables from request body
-  // using es6 object destructing
+
   const { first_name, last_name, email, password } = req.body;
   try {
 
-    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser)
       return res.status(400).json({
