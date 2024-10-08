@@ -18,13 +18,15 @@ server.use(express.json());
 
 main().catch(err => console.log(err));
 
+console.log(URI);
+
 async function main() {
-  await mongoose.connect(URI);
+  await mongoose.connect('mongodb://127.0.0.1:27017/checktheUser');
 
 }
 
 Router(server);
 
-server.listen(PORT, () =>
-    console.log(`Server running on http://localhost:${PORT}`)
+server.listen(5005, () =>
+    console.log(`Server running on http://localhost:${5005}`)
 );
