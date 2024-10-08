@@ -26,11 +26,6 @@ const UserSchema = new mongoose.Schema(
             select: false,
             max: 25,
         },
-        role: {
-            type: String,
-            required: true,
-            default: "0x01",
-        },
     },
     { timestamps: true }
 );

@@ -11,13 +11,7 @@ export async function Register(req, res) {
   // using es6 object destructing
   const { first_name, last_name, email, password } = req.body;
   try {
-    // create an instance of a user
-    const newUser = new User({
-      first_name,
-      last_name,
-      email,
-      password,
-    });
+
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser)
@@ -26,6 +20,15 @@ export async function Register(req, res) {
         data: [],
         message: "It seems you already have an account, please log in instead.",
       });
+       // create an instance of a user
+    const newUser = new User({
+      first_name,
+      last_name,
+      email,
+      password,
+    });
+
+    
     const savedUser = await newUser.save(); // save new user into the database
     const { role, ...user_data } = savedUser._doc;
     res.status(200).json({

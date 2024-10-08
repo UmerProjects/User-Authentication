@@ -6,7 +6,7 @@ import { Login } from "../controllers/auth.js";
 
 const router = express.Router();
 
-// Register route -- POST request
+
 router.post(
   "/register",
   check("email")
